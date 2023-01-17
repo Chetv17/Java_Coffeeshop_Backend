@@ -1,13 +1,14 @@
 package com.coffeeshop.java_coffeeshop_backend;
 
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 
 @Entity
 public class Products {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     private String name;
     private String image;

@@ -16,32 +16,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class JavaCoffeeshopBackendApplication {
 	@Autowired
-	private ProductsRepository productsRepository;
+	private ProductRepository productRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(JavaCoffeeshopBackendApplication.class, args);
 	}
+
 	@GetMapping("/products")
-	public Iterable<Products> index() {
-		return productsRepository.findAll();
+	public Iterable<Product> index() {
+		return productRepository.findAll();
 	}
 
 	@PostMapping("/products")
-	public Iterable<Products> create (@RequestBody Products productData) {
-		productsRepository.save(productData);
-		return productsRepository.findAll();
+	public Iterable<Product> create (@RequestBody Product productData) {
+		productRepository.save(productData);
+		return productRepository.findAll();
 	}
 
 	@DeleteMapping("/products/{id}")
-	public Iterable<Products> delete(@PathVariable int id) {
-		productsRepository.deleteById(id);
-		return productsRepository.findAll();
+	public Iterable<Product> delete(@PathVariable int id) {
+		productRepository.deleteById(id);
+		return productRepository.findAll();
 	}
 
 	@PutMapping("/products/{id}")
-	public Iterable<Products> update(@PathVariable int id, @RequestBody Products productsData) {
-		productsData.setId(id);
-		productsRepository.save(productsData);
-		return productsRepository.findAll();
+	public Iterable<Product> update(@PathVariable int id, @RequestBody Product productData) {
+		productData.setId(id);
+		productRepository.save(productData);
+		return productRepository.findAll();
 	}
 
 }
